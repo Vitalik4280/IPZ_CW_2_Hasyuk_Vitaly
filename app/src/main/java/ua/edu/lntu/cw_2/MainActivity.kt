@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    SignInPage()
                 }
             }
         }
@@ -52,61 +53,67 @@ fun SignInPage(
     var password by remember { mutableStateOf(TextFieldValue()) }
     var signInSuccess by remember { mutableStateOf(false) }
 
-    if(!signInSuccess) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("email@email.com") }
-            )
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = { Text("password") }
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = {
-                if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
-                    signInSuccess = true
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        if(!signInSuccess) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    label = { Text("email@email.com") }
+                )
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    label = { Text("password") }
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(onClick = {
+                    if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
+                        signInSuccess = true
+                    }
+                }) {
+                    Text("Sign In")
                 }
-            }) {
-                Text("Sign In")
+            }
+        }
+        else {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text("Sign In success")
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("Email: ${email.text}")
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(onClick = {
+                    signInSuccess = false
+                    email = TextFieldValue()
+                    password = TextFieldValue()
+                }) {
+                    Text("Sign Out")
+                }
             }
         }
     }
-    else {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text("Sign In success")
-            Spacer(modifier = Modifier.height(8.dp))
-            Text("Email: ${email.text}")
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = {
-                signInSuccess = false
-                email = TextFieldValue()
-                password = TextFieldValue()
-            }) {
-                Text("Sign Out")
-            }
-        }
-    }
+
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     IPZ_CW_2_Hasyuk_VitalyTheme {
-
+        SignInPage()
     }
 }
