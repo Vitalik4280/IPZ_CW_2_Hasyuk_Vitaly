@@ -53,7 +53,13 @@ fun SignInPage(
     var signInSuccess by remember { mutableStateOf(false) }
 
     if(!signInSuccess) {
-        Column() {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
