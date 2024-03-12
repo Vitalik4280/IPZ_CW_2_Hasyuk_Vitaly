@@ -81,7 +81,7 @@ fun SignInPage(
                         signInSuccess = true
                     }
                 }) {
-                    Text("Sign In")
+                    Text("Sign In", style = MaterialTheme.typography.displayLarge)
                 }
             }
         }
@@ -102,7 +102,7 @@ fun SignInPage(
                     email = TextFieldValue()
                     password = TextFieldValue()
                 }) {
-                    Text("Sign Out")
+                    Text("Sign Out", style = MaterialTheme.typography.displayLarge)
                 }
             }
         }
