@@ -78,6 +78,13 @@ fun SignInPage(
         Column() {
             Text("Sign In success")
             Text("Email: ${email.text}")
+            Button(onClick = {
+                signInSuccess = false
+                email = TextFieldValue()
+                password = TextFieldValue()
+            }) {
+                Text("Sign Out")
+            }
         }
     }
 }
