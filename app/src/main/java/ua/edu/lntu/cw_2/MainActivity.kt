@@ -3,8 +3,13 @@ package ua.edu.lntu.cw_2
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import ua.edu.lntu.cw_2.ui.theme.IPZ_CW_2_Hasyuk_VitalyTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,10 +41,27 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun SignInPage(modifier: Modifier = Modifier) {
+fun SignInPage(
+    modifier: Modifier = Modifier
+) {
     var email by remember { mutableStateOf(TextFieldValue()) }
     var password by remember { mutableStateOf(TextFieldValue()) }
     var signInSuccess by remember { mutableStateOf(false) }
+
+    if(!signInSuccess) {
+        Column() {
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("email@email.com") }
+            )
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("password") }
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
