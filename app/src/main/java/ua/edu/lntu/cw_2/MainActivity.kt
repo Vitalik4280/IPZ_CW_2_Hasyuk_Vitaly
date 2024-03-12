@@ -60,6 +60,12 @@ fun SignInPage(
                 onValueChange = { password = it },
                 label = { Text("password") }
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(onClick = {
+
+            }) {
+                Text("Sign In")
+            }
         }
     }
 }
