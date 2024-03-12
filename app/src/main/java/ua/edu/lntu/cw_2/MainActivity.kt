@@ -96,7 +96,7 @@ fun SignInPage(
                 Text("Sign In success")
                 Spacer(modifier = Modifier.height(8.dp))
                 Text("Email: ${email.text}")
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(18.dp))
                 Button(onClick = {
                     signInSuccess = false
                     email = TextFieldValue()
