@@ -62,7 +62,9 @@ fun SignInPage(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
-
+                if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
+                    signInSuccess = true
+                }
             }) {
                 Text("Sign In")
             }
